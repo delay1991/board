@@ -60,6 +60,13 @@ public class BoardVO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+
+	@Override
+	public String toString() {
+		System.out.println();
+		return super.toString();
+	}
+	
 	
 	
 	
