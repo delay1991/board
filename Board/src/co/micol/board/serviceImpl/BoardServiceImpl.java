@@ -24,7 +24,7 @@ public class BoardServiceImpl extends DAO implements BoardService {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				vo = new BoardVO();
-				vo.setBoardId(rs.getNString("boardid"));
+				vo.setBoardid(rs.getNString("boardid"));
 				vo.setWriter(rs.getNString("writer"));
 				vo.setTitle(rs.getNString("title"));
 				vo.setSubject(rs.getNString("subject"));
@@ -41,14 +41,14 @@ public class BoardServiceImpl extends DAO implements BoardService {
 
 	@Override
 	public BoardVO boardSelect(BoardVO vo) {
-		String sql="select * from board where id =?";
+		String sql="select * from board where boardid =?";
 		try {
 			psmt =conn.prepareStatement(sql);
-			psmt.setString(1, vo.getBoardId());
+			psmt.setString(1, vo.getBoardid());
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				vo.setDate(rs.getDate("enterdate"));
+				vo.setSubject(rs.getString("subject"));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -59,10 +59,10 @@ public class BoardServiceImpl extends DAO implements BoardService {
 	@Override
 	public int boardInsert(BoardVO vo) {
 		int n=0;
-		String sql = "insert into board values(?,?,?,?)";
+		String sql = "insert into board(boardid,writer,title,subject) VALUES(?,?,?,?)";
 		try {
 			psmt=conn.prepareStatement(sql);
-			psmt.setNString(1, vo.getBoardId());
+			psmt.setNString(1, vo.getBoardid());
 			psmt.setNString(2, vo.getWriter());
 			psmt.setNString(3, vo.getTitle());
 			psmt.setNString(4, vo.getSubject());
@@ -70,17 +70,16 @@ public class BoardServiceImpl extends DAO implements BoardService {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return n;
 	}
 
 	@Override
 	public int boardDelete(BoardVO vo) {
 		int n=0;
-		String sql= "delete from board where id =?";
+		String sql= "delete from board where boardid =?";
 		try {
 			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, vo.getBoardId());
+			psmt.setString(1, vo.getBoardid());
 			n = psmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -96,7 +95,7 @@ public class BoardServiceImpl extends DAO implements BoardService {
 		String sql= "update board set hit = hit +1 where boardid =?";
 		try {
 			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, boardId());
+			psmt.setString(1, boardId);
 			psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

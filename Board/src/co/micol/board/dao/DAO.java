@@ -12,7 +12,8 @@ public class DAO {
 	private String user = "demo";
 	private String password = "1234";
 
-	public DAO() { // throws de~대신 try/catch~
+	public DAO() {
+	 // throws de~대신 try/catch~
 		try {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, user, password);
