@@ -9,7 +9,7 @@ public interface BoardService {
 	BoardVO boardSelect(BoardVO vo);
 	int boardInsert(BoardVO vo);
 	int boardDelete(BoardVO vo);
-	int boardId(BoardVO vo);
+
 
 
 }
