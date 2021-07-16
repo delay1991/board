@@ -13,20 +13,18 @@ public class Menu {
 	private BoardService dao = new BoardServiceImpl();
 	
 	private void menuTitle() {
-		System.out.println("=======  전체 목록  ======");
+		System.out.println("========================================================================");
+		System.out.println("번호| 이름   |  제목                | 내용              | 날짜        | 조회수");
+		System.out.println("========================================================================");
 		List<BoardVO> boards = new ArrayList<BoardVO>();
 		boards = dao.boardSelectList();
 		for(BoardVO board : boards) {
 			board.toString();
 		}
-		System.out.println("======================");
-		System.out.println("======  게 시 판  ======");
-		System.out.println("======  1.글조회  ======");
-		System.out.println("======  2.글쓰기  ======");
-		System.out.println("======  3.글삭제  ======");
-		System.out.println("======  4.종  료  ======");
-		System.out.println("======================");
-		System.out.println("원하는 작업번호 선택>>  " );
+		System.out.println("========================================================================");
+		System.out.println("            1. 글조회  | 2. 글쓰기  | 3. 글삭제  | 4. 종료  ");
+		System.out.println("========================================================================");
+		System.out.println("원하는 작업번호 선택하세요>>  " );
 
 	}
 
@@ -38,13 +36,13 @@ public class Menu {
 			menuTitle();
 			switch (boardNo = s.nextInt()) {
 			case 1:
-				inquire();
+				boardSelect();
 				break;
 			case 2:
-				insert();
+				boardInsert();
 				break;
 			case 3:
-				delete();
+				boardDelete();
 				break;
 			case 4:
 				a = true;
@@ -57,7 +55,7 @@ public class Menu {
 		}
 	}
 
-	private void delete() {
+	private void boardDelete() {//삭제
 		BoardVO vo = new BoardVO();
 		System.out.println("삭제할 번호입력:");
 		vo.setBoardid(s.next());
@@ -70,16 +68,16 @@ public class Menu {
 		}
 	}
 
-	private void insert() {
+	private void boardInsert() {//삽입
 		BoardVO vo = new BoardVO();
 		System.out.print("번호입력: ");
-		vo.setBoardid(s.next()); s.nextLine();
+		vo.setBoardid(s.nextLine()); s.nextLine();
 		System.out.print("작성자입력: ");
-		vo.setWriter(s.next());s.nextLine();
+		vo.setWriter(s.nextLine());s.nextLine();
 		System.out.print("제목입력: ");
-		vo.setTitle(s.next());s.nextLine();
+		vo.setTitle(s.nextLine());s.nextLine();
 		System.out.print("내용입력: ");
-		vo.setSubject(s.next());
+		vo.setSubject(s.nextLine());
 		int n= dao.boardInsert(vo);
 		if (n != 0) {
 			System.out.println("1건이 입력되었습니다.");
@@ -89,16 +87,14 @@ public class Menu {
 
 	}
 
-	private void inquire() {
+	private void boardSelect() {//조회
 		BoardVO vo = new BoardVO();
 		System.out.print("검색할 번호입력: ");
 		vo.setBoardid(s.next());
 		s.nextLine();
 		vo = dao.boardSelect(vo);
 		vo.toString1();
-		s.nextLine();
-		
-	}
+		}
 
 
 	public void run() {

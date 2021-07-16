@@ -49,6 +49,7 @@ public class BoardServiceImpl extends DAO implements BoardService {
 			
 			if(rs.next()) {
 				vo.setSubject(rs.getString("subject"));
+				hitUpdate(vo.getBoardid());
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -87,10 +88,7 @@ public class BoardServiceImpl extends DAO implements BoardService {
 		return n;
 	}
 
-	@Override
-	public int boardUpdate(BoardVO vo) {
-		return 0;
-	}
+	
 	private void hitUpdate(String boardId) {
 		String sql= "update board set hit = hit +1 where boardid =?";
 		try {
@@ -101,6 +99,13 @@ public class BoardServiceImpl extends DAO implements BoardService {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public int boardId(BoardVO vo) {
+
+		return 0;
+	}
+
 	
 	
 
