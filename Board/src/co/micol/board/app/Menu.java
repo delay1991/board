@@ -14,7 +14,7 @@ public class Menu {
 	
 	private void menuTitle() {
 		System.out.println("========================================================================");
-		System.out.println("번호| 이름   |  제목                | 내용              | 날짜        | 조회수");
+		System.out.println("번호|  이름   |    제목            |  내용               | 날짜        | 조회수");
 		System.out.println("========================================================================");
 		List<BoardVO> boards = new ArrayList<BoardVO>();
 		boards = dao.boardSelectList();

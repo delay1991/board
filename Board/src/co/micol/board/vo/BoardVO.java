@@ -76,7 +76,7 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		System.out.println(boardid+" : "+writer+"\t "+title+"\t"+subject+"\t"+date+"\t"+hit);
+		System.out.println(boardid+"\t"+writer+"\t "+title+"\t"+subject+"\t"+date+"\t"+hit);
 		return null;
 	}
 
